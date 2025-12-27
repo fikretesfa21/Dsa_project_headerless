@@ -1,0 +1,6 @@
+department,year_of_study,course_code,course_name,credit_hours
+SE,3,SWEG3101,Object oriented programming,3
+SE,3,SWEG3103,Data structures and algorighms,4
+SE,3,SWEG3105,Computer organization and Architecture,4
+SE,3,SWEG3107,Internet Programming I ,3
+SE,3,SWEG3109,System analysis and modeling ,4

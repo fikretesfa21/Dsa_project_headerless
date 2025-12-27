@@ -1,0 +1,3 @@
+id,password_hash,first_name,last_name,department,age,sex,year_of_study,section,course_results
+0576,1ae708327024ec,Fikremariam,Debela,SE,21,M,3,B,"SWEG3101:0:0:F:3|SWEG3103:0:0:F:4|SWEG3105:0:0:F:4|SWEG3107:0:0:F:3|SWEG3109:0:0:F:4"
+0578,652fd789c1c,Firaol,Gula,SE,21,M,3,B,"SWEG3101:0:0:F:3|SWEG3103:0:0:F:4|SWEG3105:0:0:F:4|SWEG3107:0:0:F:3|SWEG3109:0:0:F:4"
