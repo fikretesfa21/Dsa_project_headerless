@@ -6,11 +6,10 @@
 
 using namespace std;
 
-// Struct to hold course result information
 struct CourseResult {
-    double assessment;    // Out of 50
-    double finalExam;     // Out of 50
-    string grade;         // A+, A, A-, B+, B, B-, C+, C, C-, F
+    double assessment;    
+    double finalExam;     
+    string grade;         
     int creditHours;
     
     CourseResult() : assessment(0), finalExam(0), grade("F"), creditHours(0) {}
@@ -31,18 +30,17 @@ private:
     char sex;
     int yearOfStudy;
     string section;
-    map<string, CourseResult> courses;  // courseCode -> CourseResult
-    double gpa;  // SGPA only
-
+    map<string, CourseResult> courses; 
+    double gpa;  
 public:
-    // Constructors
+   
     Student();
     Student(const string& id, const string& password,
             const string& firstName, const string& lastName,
             const string& department, int age, char sex,
             int yearOfStudy, const string& section);
     
-    // Getters
+  
     string getId() const { return id; }
     string getPasswordHash() const { return passwordHash; }
     string getFirstName() const { return firstName; }
@@ -56,7 +54,7 @@ public:
     double getGPA() const { return gpa; }
     const map<string, CourseResult>& getCourses() const { return courses; }
     
-    // Setters
+ 
     void setId(const string& newId) { id = newId; }
     void setPassword(const string& password);
     void setFirstName(const string& name) { firstName = name; }
@@ -68,24 +66,24 @@ public:
     void setSection(const string& sec) { section = sec; }
     void setGPA(double newGpa) { gpa = newGpa; }
     
-    // Course management
+   
     void addCourse(const string& courseCode, const CourseResult& result);
     void updateCourse(const string& courseCode, const CourseResult& result);
     void removeCourse(const string& courseCode);
     bool hasCourse(const string& courseCode) const;
     CourseResult getCourseResult(const string& courseCode) const;
     
-    // Authentication
+   
     bool verifyPassword(const string& password) const;
     
-    // GPA calculation
+   
     void calculateGPA();
     
-    // CSV serialization
+ 
     string toCSV() const;
     static Student fromCSV(const string& csvLine);
     
-    // Comparison operators for sorting
+  
     bool operator<(const Student& other) const { return id < other.id; }
     bool operator>(const Student& other) const { return id > other.id; }
     bool operator==(const Student& other) const { return id == other.id; }
@@ -155,31 +153,7 @@ void Student::calculateGPA() {
         const CourseResult& result = pair.second;
         double gradePoint = 0.0;
         
-        // Use Grader's getGradePoint for consistency
-        // Note: Grader class will be defined later in the build.
-        // This is a problem in Unity Build if Student.cpp comes before Grader.cpp
-        // AND Student uses Grader methods inline.
-        // We might need to forward declare Grader or move Grader before Student.
-        // BUT Grader depends on Student. Circular dependency!
-        // Solution: Split declaration and implementation or just duplicate the logic here for now
-        // OR define Grader methods after Student is defined?
-        // Wait, Grader depends on Student (takes Student&).
-        // Student uses Grader::getGradePoint.
-        // Since we are doing Unity Build, we can forward declare Grader class
-        // and put Grader's implementation later.
-        // BUT `Student::calculateGPA` is implemented here.
-        // If we implement it here, we need `Grader` to be fully defined or at least `Grader::getGradePoint`.
-        // `Grader::getGradePoint` is static.
-        // Actually, we can just inline the logic back or make `Student` not depend on `Grader`.
-        // The user previously wanted `Student::calculateGPA` to use `Grader`.
-        // Let's forward declare Grader class and its method.
-        
-        // However, I can't easily forward declare a static method and use it without the class definition.
-        // I will just implement the grade point logic directly in helper function or duplicate for now to break the cycle.
-        // Or I can move `calculateGPA` implementation to the very end of the Unity Build? No that's messy.
-        
-        // I'll just restore the if/else logic here directly to avoid dependency on Grader for now.
-        // It's cleaner for this "toy project" header-free request.
+      
         
         if (result.grade == "A+" || result.grade == "A") gradePoint = 4.0;
         else if (result.grade == "A-") gradePoint = 3.75;
@@ -201,13 +175,12 @@ void Student::calculateGPA() {
 
 string Student::toCSV() const {
     stringstream ss;
-    
-    // Basic info
+   
     ss << id << "," << passwordHash << "," << firstName << "," << lastName << ","
        << department << "," << age << "," << sex << "," << yearOfStudy << ","
        << section << ",\"";
     
-    // Course results
+  
     bool first = true;
     for (const auto& pair : courses) {
         if (!first) ss << "|";
@@ -228,7 +201,7 @@ string Student::toCSV() const {
 Student Student::fromCSV(const string& csvLine) {
     Student student;
     
-    // Parse CSV with quoted fields
+    
     vector<string> fields;
     string current;
     bool inQuotes = false;
@@ -251,7 +224,7 @@ Student Student::fromCSV(const string& csvLine) {
         return student;
     }
     
-    // Parse basic info
+   
     student.id = fields[0];
     student.passwordHash = fields[1];
     student.firstName = fields[2];
@@ -262,7 +235,7 @@ Student Student::fromCSV(const string& csvLine) {
     student.yearOfStudy = stoi(fields[7]);
     student.section = fields[8];
     
-    // Parse course results
+    
     string courseData = fields[9];
     if (!courseData.empty()) {
         vector<string> courseEntries = Utils::split(courseData, '|');

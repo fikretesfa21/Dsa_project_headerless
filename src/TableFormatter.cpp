@@ -8,17 +8,16 @@ using namespace std;
 
 class TableFormatter {
 public:
-    // Display single student in table format
+   
     static void displayStudent(const Student& student);
     
-    // Display multiple students in table format
+   
     static void displayStudents(const vector<Student>& students);
-    
-    // Display student with detailed course information
+
     static void displayStudentDetailed(const Student& student);
     
 private:
-    // Helper functions for table drawing
+    
     static void printHorizontalLine(const vector<int>& columnWidths);
     static void printRow(const vector<string>& values,
                         const vector<int>& columnWidths);
@@ -36,19 +35,19 @@ void TableFormatter::displayStudents(const vector<Student>& students) {
         return;
     }
     
-    // Define column headers and widths
+    
     vector<string> headers = {
         "ID", "Name", "Dept", "Age", "Sex", "Year", "Section", "GPA"
     };
     
     vector<int> widths = {8, 25, 8, 5, 5, 6, 8, 6};
     
-    // Print table header
+   
     printHorizontalLine(widths);
     printRow(headers, widths);
     printHorizontalLine(widths);
     
-    // Print student data
+
     for (const Student& student : students) {
         vector<string> row;
         

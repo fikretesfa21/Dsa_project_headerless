@@ -9,24 +9,24 @@
 using namespace std;
 
 namespace Utils {
-    // String manipulation
+
     string trim(const string& str);
     vector<string> split(const string& str, char delimiter);
     string join(const vector<string>& vec, const string& delimiter);
     
-    // Input validation
+
     bool isValidAge(int age);
     bool isValidGPA(double gpa);
     bool isValidSex(char sex);
     bool isValidYear(int year);
     
-    // Safe input
+
     string getLine();
     int getInt();
     double getDouble();
     char getChar();
     
-    // Password hashing (simple hash for demonstration)
+
     string hashPassword(const string& password);
 }
 
@@ -113,7 +113,7 @@ namespace Utils {
         return value;
     }
     
-    // Simple hash function for password (for demonstration purposes)
+    // Simple hash function for password
     string hashPassword(const string& password) {
         unsigned long hash = 5381;
         for (char c : password) {

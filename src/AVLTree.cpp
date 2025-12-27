@@ -18,7 +18,7 @@ private:
     
     Node* root;
     
-    // Helper functions
+
     int getHeight(Node* node) const {
         return node ? node->height : 0;
     }
@@ -123,7 +123,6 @@ private:
         } else if (value > node->data) {
             node->right = removeNode(node->right, value);
         } else {
-            // Node to be deleted found
             if (!node->left || !node->right) {
                 Node* temp = node->left ? node->left : node->right;
                 

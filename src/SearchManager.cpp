@@ -5,8 +5,8 @@
 using namespace std;
 
 enum class SearchMode {
-    MATCH_ALL,  // AND logic - all criteria must match
-    MATCH_ANY   // OR logic - any criteria can match
+    MATCH_ALL,  
+    MATCH_ANY   
 };
 
 struct SearchCriteria {
@@ -54,16 +54,14 @@ bool SearchManager::matchesCriteria(const Student& student, const SearchCriteria
                                    SearchMode mode) {
     int matchCount = 0;
     int criteriaCount = 0;
-    
-    // Check ID
-    if (!criteria.id.empty()) {
+        if (!criteria.id.empty()) {
         criteriaCount++;
         if (student.getId() == criteria.id) {
             matchCount++;
         }
     }
     
-    // Check first name
+
     if (!criteria.firstName.empty()) {
         criteriaCount++;
         string firstName = student.getFirstName();
@@ -76,7 +74,7 @@ bool SearchManager::matchesCriteria(const Student& student, const SearchCriteria
         }
     }
     
-    // Check last name
+
     if (!criteria.lastName.empty()) {
         criteriaCount++;
         string lastName = student.getLastName();
@@ -88,40 +86,34 @@ bool SearchManager::matchesCriteria(const Student& student, const SearchCriteria
             matchCount++;
         }
     }
-    
-    // Check department
+
     if (!criteria.department.empty()) {
         criteriaCount++;
         if (student.getDepartment() == criteria.department) {
             matchCount++;
         }
     }
-    
-    // Check age
-    if (criteria.age != -1) {
+     if (criteria.age != -1) {
         criteriaCount++;
         if (student.getAge() == criteria.age) {
             matchCount++;
         }
     }
-    
-    // Check sex
+
     if (criteria.sex != '\0') {
         criteriaCount++;
         if (student.getSex() == criteria.sex) {
             matchCount++;
         }
     }
-    
-    // Check year of study
+
     if (criteria.yearOfStudy != -1) {
         criteriaCount++;
         if (student.getYearOfStudy() == criteria.yearOfStudy) {
             matchCount++;
         }
     }
-    
-    // Check GPA range
+
     if (criteria.minGPA != -1.0 || criteria.maxGPA != -1.0) {
         criteriaCount++;
         double gpa = student.getGPA();
@@ -139,10 +131,10 @@ bool SearchManager::matchesCriteria(const Student& student, const SearchCriteria
         }
     }
     
-    // Return based on mode
+
     if (mode == SearchMode::MATCH_ALL) {
         return matchCount == criteriaCount;
-    } else {  // MATCH_ANY
+    } else {  
         return matchCount > 0;
     }
 }

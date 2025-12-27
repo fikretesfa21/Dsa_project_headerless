@@ -8,9 +8,9 @@ using namespace std;
 #include <iomanip>
 #include <limits>
 #include <memory>
-#include <algorithm> // Needed for some algos
+#include <algorithm> 
 
-// Unity Build Includes - Order Matters!
+
 #include "Utils.cpp"
 #include "Course.cpp"
 #include "AVLTree.cpp"
@@ -35,11 +35,9 @@ void pause() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Forward declarations
 void adminMenu(StudentManager& manager);
 void studentMenu(StudentManager& manager, Student* student);
 
-// Admin menu functions
 void addStudentMenu(StudentManager& manager);
 void updateStudentMenu(StudentManager& manager);
 void deleteStudentMenu(StudentManager& manager);
@@ -128,7 +126,7 @@ void adminMenu(StudentManager& manager) {
             case 8: undoMenu(manager); break;
             case 9: return;
             default:
-                cout << "\n❌ Invalid choice!" << endl;
+                cout << "\n Invalid choice!" << endl;
                 pause();
         }
     }
@@ -154,7 +152,7 @@ void studentMenu(StudentManager& manager, Student* student) {
         } else if (choice == 2) {
             return;
         } else {
-            cout << "\n❌ Invalid choice!" << endl;
+            cout << "\n Invalid choice!" << endl;
             pause();
         }
     }
@@ -171,7 +169,7 @@ void addStudentMenu(StudentManager& manager) {
     
     // Check if student already exists
     if (manager.getStudent(id)) {
-        cout << "\n❌ Student with ID " << id << " already exists!" << endl;
+        cout << "\n Student with ID " << id << " already exists!" << endl;
         pause();
         return;
     }
@@ -232,9 +230,9 @@ void addStudentMenu(StudentManager& manager) {
     }
     
     if (manager.addStudent(newStudent)) {
-        cout << "\n✅ Student added successfully!" << endl;
+        cout << "\n Student added successfully!" << endl;
     } else {
-        cout << "\n❌ Failed to add student!" << endl;
+        cout << "\nFailed to add student!" << endl;
     }
     
     pause();
@@ -251,7 +249,7 @@ void updateStudentMenu(StudentManager& manager) {
     
     Student* student = manager.getStudent(id);
     if (!student) {
-        cout << "\n❌ Student not found!" << endl;
+        cout << "\n Student not found!" << endl;
         pause();
         return;
     }
@@ -300,9 +298,9 @@ void updateStudentMenu(StudentManager& manager) {
     }
     
     if (manager.updateStudent(id, updatedStudent)) {
-        cout << "\n✅ Student updated successfully!" << endl;
+        cout << "\n Student updated successfully!" << endl;
     } else {
-        cout << "\n❌ Failed to update student!" << endl;
+        cout << "\n Failed to update student!" << endl;
     }
     
     pause();
@@ -326,12 +324,12 @@ void deleteStudentMenu(StudentManager& manager) {
     
     TableFormatter::displayStudent(*student);
     
-    cout << "\n⚠️  Are you sure you want to delete this student? (y/n): ";
+    cout << "\n Are you sure you want to delete this student? (y/n): ";
     char confirm = Utils::getChar();
     
     if (confirm == 'y' || confirm == 'Y') {
         if (manager.deleteStudent(id)) {
-            cout << "\n✅ Student deleted successfully!" << endl;
+            cout << "\n Student deleted successfully!" << endl;
         } else {
             cout << "\n Failed to delete student!" << endl;
         }

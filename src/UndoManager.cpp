@@ -4,10 +4,10 @@
 
 using namespace std;
 
-// Forward declaration
+
 class StudentManager;
 
-// Abstract Command base class
+
 class Command {
 public:
     virtual ~Command() = default;
@@ -16,7 +16,7 @@ public:
     virtual string getDescription() const = 0;
 };
 
-// Add Student Command
+
 class AddStudentCommand : public Command {
 private:
     StudentManager* manager;
@@ -30,7 +30,7 @@ public:
     string getDescription() const override;
 };
 
-// Update Student Command
+
 class UpdateStudentCommand : public Command {
 private:
     StudentManager* manager;
@@ -45,7 +45,7 @@ public:
     string getDescription() const override;
 };
 
-// Delete Student Command
+
 class DeleteStudentCommand : public Command {
 private:
     StudentManager* manager;
@@ -59,7 +59,7 @@ public:
     string getDescription() const override;
 };
 
-// Undo Manager
+
 class UndoManager {
 private:
     stack<unique_ptr<Command>> undoStack;
