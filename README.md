@@ -31,7 +31,7 @@ A comprehensive console-based C++ application for managing student records with 
 - Assessment score (0-50) + Final exam (0-50)
 - Automatic letter grade calculation (A/B/C/D/F)
 - SGPA calculation based on credit hours
-- Grade scale: A=4.0, B=3.0, C=2.0, D=1.0, F=0.0
+- Grade scale: A or A+ = 4.0 , A- = 3.75 , B+ = 3.5 , B = 3.0  , B- = 2.75 , C+ = 2.5 , C =2.0 , C- =1.75  ,F = 0
 
 ### ↩️ Undo Functionality
 - Command pattern-based undo system
@@ -58,7 +58,7 @@ Dsa_project/
 │   ├── UndoManager.cpp  # Command pattern undo logic
 │   ├── StudentManager.cpp # Main controller logic
 │   ├── TableFormatter.cpp # Display formatting logic
-│   └── AVLTree.cpp      # Template AVL tree implementation
+│   └── AVLTree.cpp      # Its just a binary search tree with self balancing capability 
 ├── data/                # CSV databases
 │   ├── courses.csv      # Course catalog
 │   └── students.csv     # Student records
@@ -109,29 +109,9 @@ Admin can:
 - Undo last operation
 
 ### Student Login
-1. Select "Student Login"
-2. Enter student ID (e.g., `001`)
-3. Enter password (`password` for sample data)
-
 Students can:
 - View their complete academic record
 - See all course grades and GPA
-
-## Sample Data
-
-### Sample Students
-- **001**: John Doe (CS, Year 1, GPA: 3.75)
-- **002**: Jane Smith (CS, Year 1, GPA: 4.00)
-- **003**: Michael Johnson (CS, Year 2, GPA: 2.77)
-- **004**: Emily Williams (CS, Year 2, GPA: 3.92)
-- **005**: David Brown (CS, Year 3, GPA: 3.21)
-- **006**: Sarah Davis (EE, Year 1, GPA: 3.69)
-- **007**: Robert Miller (EE, Year 2, GPA: 2.70)
-- **008**: Lisa Wilson (ME, Year 1, GPA: 3.92)
-- **009**: James Moore (ME, Year 2, GPA: 3.30)
-- **010**: Amanda Taylor (CS, Year 1, GPA: 3.58)
-
-All sample students have password: `password`
 
 ### Departments
 - **CS**: Computer Science
@@ -157,20 +137,12 @@ id,password_hash,first_name,last_name,department,age,sex,year_of_study,section,c
 Course results format: `course_code:assessment:final:grade:credits|...`
 
 ### Password Hashing
-Simple hash function for demonstration (DJB2 algorithm). In production, use proper cryptographic hashing (e.g., bcrypt, SHA-256).
+Simple hash function for demonstration (DJB2 algorithm).
 
 ### Data Persistence
 - Data loaded from CSV on startup
 - Data saved to CSV on exit
 - Single read/write per program lifecycle
-
-## Design Patterns
-
-- **Command Pattern**: Undo functionality
-- **Template Pattern**: Generic AVL tree
-- **Singleton-like**: StudentManager as central controller
-- **Strategy Pattern**: Search modes (MATCH_ALL vs MATCH_ANY)
-
 ## Algorithms
 
 - **AVL Tree**: O(log n) insert, delete, search
@@ -189,18 +161,3 @@ Simple hash function for demonstration (DJB2 algorithm). In production, use prop
 - Email notifications
 - Web interface
 
-## License
-
-This project is created for educational purposes.
-
-## Author
-
-Created as a Data Structures and Algorithms project demonstrating:
-- AVL Trees
-- Quick Sort
-- Binary Search
-- Stack (for undo)
-- Hash Maps
-- Object-Oriented Design
-- File I/O
-- Command Pattern
